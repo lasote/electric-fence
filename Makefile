@@ -8,15 +8,6 @@ CFLAGS= -g
 LIB_INSTALL_DIR= /usr/lib
 MAN_INSTALL_DIR= /usr/man/man3
 
-ifeq ($(OS),Windows_NT)
-	# get a better computer
-else
-    UNAME_S := $(shell uname -s)
-    ifeq ($(UNAME_S),Darwin)
-        CFLAGS += -DPAGE_PROTECTION_VIOLATED_SIGNAL=SIGBUS
-    endif
-endif
-
 PACKAGE_SOURCE= README libefence.3 Makefile efence.h \
 	efence.c page.c print.c eftest.c tstheap.c CHANGES COPYING
 

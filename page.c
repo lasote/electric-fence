@@ -1,6 +1,3 @@
-/* For email below, drop spaces and <spam-buster> tag.
- * MODIFIED:  March 20, 2014 (jric<spam-buster> @ <spam-buster> chegg DOT com)
-*/
 #include "efence.h"
 #include <stdlib.h>
 #include <unistd.h>
@@ -32,7 +29,7 @@
 
 static caddr_t	startAddr = (caddr_t) 0;
 
-#if ( !defined(sgi) && !defined(_AIX) && __DARWIN_C_LEVEL < __DARWIN_C_FULL )
+#if ( !defined(sgi) && !defined(_AIX) )
 extern int	sys_nerr;
 /*extern char *	sys_errlist[];*/
 #endif

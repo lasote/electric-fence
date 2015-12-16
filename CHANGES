@@ -1,6 +1,3 @@
-2.2 25-Mar-2014
-	Added support for BSD/Mac OS, including strdup/strndup stand-ins.
-
 2.1	Remove work-arounds, most operating systems and C libraries have
 	been fixed now.
 

@@ -2,9 +2,6 @@
  * Electric Fence - Red-Zone memory allocator.
  * Bruce Perens, 1988, 1993
  * 
- * For email below, drop spaces and <spam-buster> tag.
- * MODIFIED:  March 20, 2014 (jric<spam-buster> @ <spam-buster> chegg DOT com)
- *
  * This is a special version of malloc() and company for debugging software
  * that is suspected of overrunning or underrunning the boundaries of a
  * malloc buffer, or touching free memory.
@@ -31,7 +28,6 @@
  * this is 16 kilobytes on many systems. On some systems it will be necessary
  * to increase the amount of swap space in order to debug large programs that
  * perform lots of allocation, because of the per-buffer overhead.
- *
  */
 #include "efence.h"
 #include <stdlib.h>
@@ -39,7 +35,6 @@
 #include <memory.h>
 #include <string.h>
 #include <pthread.h>
-#include <errno.h>
 
 #ifdef	malloc
 #undef	malloc
@@ -49,8 +44,8 @@
 #undef	calloc
 #endif
 
-static const char	version[] = "\n  Electric Fence 2.2"
- " Copyright (C) 1987-2014 Bruce Perens.\n";
+static const char	version[] = "\n  Electric Fence 2.1"
+ " Copyright (C) 1987-1998 Bruce Perens.\n";
 
 /*
  * MEMORY_CREATION_SIZE is the amount of memory to get from the operating
@@ -823,44 +818,6 @@ malloc(size_t size)
         unlock();
 
 	return allocation;
-}
-
-extern C_LINKAGE char *
-strdup(const char *s1)
-{
-        if (!s1) return 0;
-        char *s2 = malloc(strlen(s1) + 1);
-
-        if (!s2) {
-                errno = ENOMEM;
-                return 0;
-        }
-
-        return strcpy(s2, s1);
-}
-
-extern C_LINKAGE char *
-strndup(const char *s1, size_t n)
-{
-        if (!s1) return 0;
-        int complete_size = n;  /* includes terminating null */
-        for (int i = 0; i < n - 1; i++) {
-                if (!s1[i]) {
-                        complete_size = i + 2;
-                        break;
-                }
-        }
-        char *s2 = malloc(complete_size);
-
-        if (!s2) {
-                errno = ENOMEM;
-                return 0;
-        }
-
-        strncpy(s2, s1, complete_size - 1);
-        s2[complete_size - 1] = '\0';
-
-        return s2;
 }
 
 extern C_LINKAGE void *
