@@ -1,7 +1,7 @@
 PROJECT(efence)
 cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_C_FLAGS "-fPIC")
+set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-fPIC")
 ADD_LIBRARY(efence efence.c page.c print.c)
 TARGET_LINK_LIBRARIES(efence pthread)
 
