@@ -1,6 +1,7 @@
 PROJECT(efence)
 cmake_minimum_required(VERSION 2.8)
 
+ADD_DEFINITIONS(-D_AIX=1)
 
 ADD_LIBRARY(efence efence.c page.c print.c)
 TARGET_LINK_LIBRARIES(efence pthread)
