@@ -243,8 +243,8 @@ initialize(void)
                        EF_DISABLE_BANNER = 0;
        }
 
-       if ( EF_DISABLE_BANNER == 0 )
-               EF_Print(version);
+       //if ( EF_DISABLE_BANNER == 0 )
+       //        EF_Print(version);
 
 	/*
 	 * Import the user's environment specification of the default
